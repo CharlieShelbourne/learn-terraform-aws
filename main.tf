@@ -26,11 +26,21 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-resource "aws_instance" "app_server" {
-  ami           = "ami-08d70e59c07c61a3a"
-  instance_type = "t2.micro"
+# resource "aws_instance" "app_server" {
+#   ami           = "ami-08d70e59c07c61a3a"
+#   instance_type = "t2.micro"
+
+#   tags = {
+#     Name = var.instance_name
+#   }
+# }
+
+resource "aws_s3_bucket" "b" {
+  bucket = "bare-random-bucket-i-decide"
+  acl    = "private"
 
   tags = {
-    Name = var.instance_name
+    Name        = "My bucket"
+    Environment = "Dev"
   }
 }
