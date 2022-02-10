@@ -5,35 +5,29 @@ terraform {
   #     name = "learn-terraform-aws"
   #   }
   # }
+
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.27"
+      source = "hashicorp/aws"
+      Version = "~>3.27"
     }
   }
 
-  required_version = ">= 0.14.9"
+  required_version = ">=0.14.9"
 
   backend "s3" {
-       bucket = "test-terraform-state-2022"
-       key    = "mint-strudios-state"
-       region = "us-east-1"
-   }
+    bucket = "test-terraform-state-2022"
+    key    = "mint-strudios-state"
+    region = "us-east-1"
+  }
+
 }
 
 provider "aws" {
+  version = "~>3.0"
   profile = "default"
   region  = "us-east-1"
 }
-
-# resource "aws_instance" "app_server" {
-#   ami           = "ami-08d70e59c07c61a3a"
-#   instance_type = "t2.micro"
-
-#   tags = {
-#     Name = var.instance_name
-#   }
-# }
 
 resource "aws_s3_bucket" "b" {
   bucket = "bare-random-bucket-i-decide"
